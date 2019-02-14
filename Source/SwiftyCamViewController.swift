@@ -113,7 +113,7 @@ open class SwiftyCamViewController: UIViewController {
 
 	/// Public Camera Delegate for the Custom View Controller Subclass
 
-	public weak var cameraDelegate: SwiftyCamViewControllerDelegate?
+	public weak var cameraDelegate: SwiftyCamViewControllerDelegate? = nil
 
 	/// Maxiumum video duration if SwiftyCamButton is used
 
@@ -126,8 +126,11 @@ open class SwiftyCamViewController: UIViewController {
 	/// Sets whether flash is enabled for photo and video capture
     @available(*, deprecated, message: "use flashMode .on or .off") //use flashMode
     public var flashEnabled: Bool {
-        didSet{
-            self.flashMode = self.flashEnabled ? .on : .off
+        get {
+            return self.flashMode == .on
+        }
+        set {
+            self.flashMode = newValue ? .on : .off
         }
     }
     
